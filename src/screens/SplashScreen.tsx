@@ -43,7 +43,7 @@ const checkOnboarding = async () => {
     2: 'DateBirth',
     3: 'TimeBirth',
     4: 'BirthPlace',
-    5: 'Home',
+    5: 'MainTabs',
   };
 
   const nextScreen = routeMap[stepValue] || 'EnterName';

@@ -19,6 +19,10 @@ export const completeOnboarding = async () => {
   const res = await apiClient.post(ENDPOINTS.completeOnboarding);
   return res.data;
 };
+export const socialLogin = async (data) => {
+  const res = await apiClient.post(ENDPOINTS.socialLogin,data);
+  return res.data;  
+};
 
 export const logout = async () => {
   const res = await apiClient.post(ENDPOINTS.logout);

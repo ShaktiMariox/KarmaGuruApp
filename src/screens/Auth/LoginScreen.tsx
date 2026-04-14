@@ -1,14 +1,16 @@
 import { Image, ImageBackground, StyleSheet, Text, TextInput, TouchableOpacity, View, Dimensions, Platform, ToastAndroid, Keyboard } from 'react-native';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useNavigation } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../../App';
-import { sendOtp } from '../../api/service';
+import { sendOtp, socialLogin } from '../../api/service';
 import { Alert } from 'react-native';
 import { ActivityIndicator } from 'react-native';
 import KeyboardWrapper from '../../component/KeyboardWrapper';
 import { ErrorHandler } from '../../utils/ErrorHanldler';
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
+
 
 const { width, height } = Dimensions.get('window');
 
@@ -58,6 +60,32 @@ const LoginScreen = () => {
       setLoading(false);
     }
   };
+
+ const handleGoogleLogin = async () => {
+  console.log("pressed:");
+
+  try {
+    await GoogleSignin.hasPlayServices();
+
+    const userInfo = await GoogleSignin.signIn();
+
+    if (!userInfo) {
+      console.log("No user info received");
+      return;
+    }
+
+    console.log("FULL USER:", JSON.stringify(userInfo, null, 2));
+
+  } catch (error) {
+    console.log("ERROR:", error);
+  }
+};
+
+  useEffect(() => {
+  GoogleSignin.configure({
+    webClientId: '606911584020-vfuidtu3cf7ji7u81pt9om4l4fdsnefa.apps.googleusercontent.com'
+  });
+}, []);
   return (
     <KeyboardWrapper>
       <ImageBackground
@@ -161,7 +189,7 @@ const LoginScreen = () => {
           <View style={styles.socialContainer}>
 
             {/* Google Button */}
-            <TouchableOpacity style={styles.socialButton} onPress={() => console.log('Google Login')}>
+            <TouchableOpacity style={styles.socialButton} onPress={handleGoogleLogin}>
               <Image
                 source={require('../../assets/images/google.png')}
                 style={styles.socialIcon}
