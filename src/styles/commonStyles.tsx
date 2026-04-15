@@ -84,7 +84,13 @@ foreCastContentTitle:{
     marginTop: verticalScale(10),
     lineHeight: moderateScale(22),
     fontWeight:"400"
- }
+ },
+   screenContentHeader: {
+  flexDirection: 'row',
+  alignItems: 'center',
+  justifyContent: 'center', // 👈 important
+  paddingVertical: verticalScale(10),
+},
   
 
 })
