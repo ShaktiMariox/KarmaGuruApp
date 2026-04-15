@@ -84,7 +84,8 @@ const transactions = [
 
                         {/* CENTER TITLE */}
                         <Text style={commonStyle.foreCastContentHeaderTitle}>
-                            Notification
+                            Wallet
+
                         </Text>
 
                     </View>

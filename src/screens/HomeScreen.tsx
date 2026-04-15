@@ -822,7 +822,8 @@ const styles = StyleSheet.create({
 
   tabs: {
     flexDirection: 'row',
-    justifyContent: 'space-around',
+    // justifyContent: 'space-around',
+    justifyContent:"space-between",
     borderRadius: moderateScale(8),
     paddingVertical: verticalScale(8),
     marginBottom: verticalScale(16),

@@ -52,12 +52,12 @@ const styles = StyleSheet.create({
     marginTop: verticalScale(20),
   },
 
-  forecastTabItem: {
-    paddingVertical: verticalScale(8),
-    paddingHorizontal: scale(18),
-    borderRadius: moderateScale(12),
-  },
-
+ forecastTabItem: {
+  flex: 1,                      // ✅ distribute equally
+  paddingVertical: verticalScale(8),
+  alignItems: 'center',         // ✅ center text
+  borderRadius: moderateScale(12),
+},
   forecastTabItemActive: {
     backgroundColor: '#D4A017',
   },

@@ -10,6 +10,7 @@ import { ActivityIndicator } from 'react-native';
 import KeyboardWrapper from '../../component/KeyboardWrapper';
 import { ErrorHandler } from '../../utils/ErrorHanldler';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 const { width, height } = Dimensions.get('window');
@@ -18,6 +19,8 @@ const LoginScreen = () => {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const [phone, setPhone] = useState('');
   const [loading, setLoading] = useState(false);
+
+  const [googleLoading,setGoogleLoading] = useState(false);
 
   const [checked, setChecked] = useState(false);
   
@@ -64,10 +67,36 @@ const LoginScreen = () => {
  const handleGoogleLogin = async () => {
   console.log("pressed:");
 
+  GoogleSignin.configure({
+        webClientId: '606911584020-e9gce44cfltd9t81v3ekvodfqbmvmmaq.apps.googleusercontent.com',
+          offlineAccess: true,
+
+        // iosClientId: 'ADD_YOUR_iOS_CLIENT_ID_HERE',
+    });
+
   try {
     await GoogleSignin.hasPlayServices();
+    await GoogleSignin.signOut();
 
     const userInfo = await GoogleSignin.signIn();
+
+    setGoogleLoading(true)
+    const payload = {
+  provider: "google",
+  socialId: userInfo.data.user.id,
+  email: userInfo.data.user.email,
+  name: userInfo.data.user.name,
+  avatar: userInfo.data.user.photo || "",
+  deviceType: "android",
+};
+
+console.log("payload:",payload)
+        const response = await socialLogin(payload);
+    console.log("API RESPONSE:", response);
+
+
+    
+    console.log("userInfo:", userInfo)
 
     if (!userInfo) {
       console.log("No user info received");
@@ -78,14 +107,16 @@ const LoginScreen = () => {
 
   } catch (error) {
     console.log("ERROR:", error);
+  } finally{
+    setGoogleLoading(false)
   }
 };
 
-  useEffect(() => {
-  GoogleSignin.configure({
-    webClientId: '606911584020-vfuidtu3cf7ji7u81pt9om4l4fdsnefa.apps.googleusercontent.com'
-  });
-}, []);
+//   useEffect(() => {
+//   GoogleSignin.configure({
+//     webClientId: '606911584020-bhcrstio4pnigtv0fvhjads5cpefmjhm.apps.googleusercontent.com'
+//   });
+// }, []);
   return (
     <KeyboardWrapper>
       <ImageBackground
@@ -210,6 +241,12 @@ const LoginScreen = () => {
 
 
         </View>
+
+        {googleLoading && (
+  <View style={styles.loaderContainer}>
+    <ActivityIndicator size="large" color="#FFA500" />
+  </View>
+)}
       </ImageBackground>
     </KeyboardWrapper>
   );
@@ -354,4 +391,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  loaderContainer: {
+  position: 'absolute',
+  top: 0,
+  left: 0,
+  right: 0,
+  bottom: 0,
+  justifyContent: 'center',
+  alignItems: 'center',
+  backgroundColor: 'rgba(0,0,0,0.5)',
+},
 });

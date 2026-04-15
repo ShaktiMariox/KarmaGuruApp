@@ -23,6 +23,19 @@ export const socialLogin = async (data) => {
   const res = await apiClient.post(ENDPOINTS.socialLogin,data);
   return res.data;  
 };
+export const kundliBasicDetail = async () => {
+  const res = await apiClient.get(ENDPOINTS.basicKudliDetail);
+  return res.data;  
+};
+
+export const kundliPlanetryPosition = async () => {
+  const res = await apiClient.get(ENDPOINTS.kundliplanetarypositions);
+  return res.data;  
+};
+export const astrologyChart = async (type: string) => {
+  const res = await apiClient.get(`${ENDPOINTS.astrologyChart}/${type}`);
+  return res.data;
+};
 
 export const logout = async () => {
   const res = await apiClient.post(ENDPOINTS.logout);
