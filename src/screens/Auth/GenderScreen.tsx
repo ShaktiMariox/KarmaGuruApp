@@ -5,6 +5,7 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import { completeOnboarding, onBoarding } from '../../api/service';
 import { ErrorHandler } from '../../utils/ErrorHanldler';
 import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
+import { FontFamily } from '../../utils/fontFamily';
 
 
 const GenderScreen = ({ navigation }: any) => {
@@ -145,7 +146,7 @@ const GenderScreen = ({ navigation }: any) => {
                         <ActivityIndicator size="small" color="#fff" />
                     ) : (
                         <>
-                            <Text style={styles.nextButtonText}>Next</Text>
+                            <Text style={styles.nextButtonText}>Submit</Text>
                             <MaterialCommunityIcons
                                 name="arrow-right"
                                 size={20}
@@ -193,6 +194,8 @@ const styles = StyleSheet.create({
     fontSize: moderateScale(24),
     fontWeight: '600',
     textAlign: 'center',
+    fontFamily: FontFamily.primaryFontFamily
+
   },
 
   progressContainer: {
@@ -223,6 +226,8 @@ const styles = StyleSheet.create({
     color: 'white',
     fontWeight: '600',
     fontSize: moderateScale(14),
+    fontFamily: FontFamily.secondaryFontFamily
+
   },
 
   imageContainer: {
@@ -241,6 +246,8 @@ const styles = StyleSheet.create({
     fontSize: moderateScale(14),
     textAlign: 'center',
     paddingHorizontal: scale(20),
+    fontFamily: FontFamily.secondaryFontFamily
+
   },
 
   bottomContainer: {
@@ -291,6 +298,8 @@ const styles = StyleSheet.create({
     color: 'white',
     marginTop: verticalScale(6),
     fontSize: moderateScale(14),
+    fontFamily: FontFamily.secondaryFontFamily
+
   },
 
   nextButton: {
@@ -307,5 +316,7 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     fontSize: moderateScale(16),
     color: '#0D1227',
+    fontFamily: FontFamily.secondaryFontFamily
+
   },
 });

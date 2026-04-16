@@ -6,6 +6,7 @@ import { onBoarding } from '../../api/service';
 import { ErrorHandler } from '../../utils/ErrorHanldler';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
+import { FontFamily } from '../../utils/fontFamily';
 
 
 
@@ -203,6 +204,8 @@ const styles = StyleSheet.create({
         fontSize: moderateScale(24),
         fontWeight: '600',
         textAlign: 'center',
+        fontFamily: FontFamily.primaryFontFamily
+
     },
 
     progressContainer: {
@@ -233,6 +236,8 @@ const styles = StyleSheet.create({
         color: 'white',
         fontWeight: '600',
         fontSize: moderateScale(14),
+    fontFamily: FontFamily.secondaryFontFamily
+
     },
 
     imageContainer: {
@@ -252,6 +257,8 @@ const styles = StyleSheet.create({
         fontSize: moderateScale(14),
         textAlign: 'center',
         paddingHorizontal: scale(20),
+    fontFamily: FontFamily.secondaryFontFamily
+
     },
 
     bottomContainer: {
@@ -276,6 +283,8 @@ const styles = StyleSheet.create({
         color: 'white',
         fontSize: moderateScale(15),
         textAlign: 'center',
+    fontFamily: FontFamily.secondaryFontFamily
+
     },
 
     nextButton: {
@@ -292,6 +301,8 @@ const styles = StyleSheet.create({
         fontWeight: '700',
         fontSize: moderateScale(16),
         color: '#0D1227',
+    fontFamily: FontFamily.secondaryFontFamily
+
     },
 
     checkboxContainer: {
@@ -304,6 +315,8 @@ const styles = StyleSheet.create({
         color: 'white',
         marginLeft: scale(10),
         fontSize: moderateScale(13),
+    fontFamily: FontFamily.secondaryFontFamily
+
     },
 
     noteContainer: {
@@ -316,5 +329,7 @@ const styles = StyleSheet.create({
     noteText: {
         color: '#0D1227',
         fontSize: moderateScale(10),
+    fontFamily: FontFamily.secondaryFontFamily
+
     },
 });

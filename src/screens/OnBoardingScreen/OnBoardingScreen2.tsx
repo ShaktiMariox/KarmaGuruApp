@@ -11,6 +11,7 @@ import {
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import FastImage from 'react-native-fast-image';
+import { FontFamily } from '../../utils/fontFamily';
 
 
 const { width, height } = Dimensions.get('window');
@@ -76,6 +77,8 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontWeight: '600',
     textAlign: 'center',
+    fontFamily:FontFamily.primaryFontFamily
+
   },
   desc: {
     marginTop: 10,
@@ -83,6 +86,8 @@ const styles = StyleSheet.create({
     color: '#ccc',
     textAlign: 'center',
     paddingHorizontal: width * 0.1, // 10% padding
+    fontFamily:FontFamily.secondaryFontFamily
+
   },
   button: {
    paddingVertical: height * 0.015,
@@ -95,6 +100,8 @@ const styles = StyleSheet.create({
   buttonText: {
     color: '#FF8C1A',
     fontSize: 16,
-    fontWeight: '500'
+    fontWeight: '500',
+    fontFamily:FontFamily.secondaryFontFamily
+    
   },
 });

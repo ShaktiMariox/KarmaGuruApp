@@ -25,6 +25,7 @@ import { useRoute } from '@react-navigation/native';
 import { verifyOtp } from '../../api/service';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ErrorHandler } from '../../utils/ErrorHanldler';
+import { FontFamily } from '../../utils/fontFamily';
 
 
 
@@ -240,13 +241,16 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     color: '#fff',
-    fontWeight: '700',
+    fontWeight: '600',
     marginBottom: 10,
+    fontFamily:FontFamily.primaryFontFamily
   },
   subtitle: {
     fontSize: 16,
     color: '#ccc',
     marginBottom: 24,
+    fontFamily:FontFamily.secondaryFontFamily
+
   },
   otpContainer: {
     flexDirection: 'row',
@@ -263,6 +267,8 @@ const styles = StyleSheet.create({
     fontSize: 24,
     color: '#fff',
     backgroundColor: 'rgba(255,255,255,0.1)',
+    fontFamily:FontFamily.secondaryFontFamily
+
   },
   button: {
     backgroundColor: '#FF8C1A',
@@ -276,6 +282,8 @@ const styles = StyleSheet.create({
     color: '#0D1227',
     fontSize: 16,
     fontWeight: '700',
+    fontFamily:FontFamily.secondaryFontFamily
+
   },
   changeNumberContainer: {
     flexDirection: 'row',
@@ -287,5 +295,7 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 16,
     fontWeight: '500',
+    fontFamily:FontFamily.secondaryFontFamily
+
   },
 });

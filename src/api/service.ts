@@ -25,6 +25,8 @@ export const socialLogin = async (data) => {
 };
 export const kundliBasicDetail = async () => {
   const res = await apiClient.get(ENDPOINTS.basicKudliDetail);
+
+  console.log("resssssss:",res)
   return res.data;  
 };
 

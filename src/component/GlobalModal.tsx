@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Modal, View, Text, TouchableOpacity } from 'react-native';
 import { ErrorHandler } from '../utils/ErrorHanldler';
+import { FontFamily } from '../utils/fontFamily';
 
 const GlobalModal = () => {
   const [visible, setVisible] = useState(false);
@@ -57,7 +58,9 @@ const showModal = (msg: string, modalType: 'error' | 'success' = 'error') => {
               marginBottom: 15,
               textAlign: 'center',
               color: "#fff",
-              fontSize:16
+              fontSize:16,
+                  fontFamily:FontFamily.secondaryFontFamily
+              
               
             }}
           >
@@ -73,7 +76,7 @@ const showModal = (msg: string, modalType: 'error' | 'success' = 'error') => {
               borderRadius: 6,
             }}
           >
-            <Text style={{ color: '#0D1227', fontWeight:"700" , fontSize:16}}>OK</Text>
+            <Text style={{ color: '#0D1227', fontWeight:"700" , fontSize:16,fontFamily:FontFamily.secondaryFontFamily}}>OK</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -96,7 +99,7 @@ const showModal = (msg: string, modalType: 'error' | 'success' = 'error') => {
         borderRadius: 10,
       }}
     >
-      <Text style={{ color: '#fff', fontSize: 14 }}>
+      <Text style={{ color: '#fff', fontSize: 14,fontFamily:FontFamily.secondaryFontFamily }}>
         {message}
       </Text>
     </View>

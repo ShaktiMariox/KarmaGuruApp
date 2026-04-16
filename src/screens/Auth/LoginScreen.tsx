@@ -11,6 +11,7 @@ import KeyboardWrapper from '../../component/KeyboardWrapper';
 import { ErrorHandler } from '../../utils/ErrorHanldler';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { FontFamily } from '../../utils/fontFamily';
 
 
 const { width, height } = Dimensions.get('window');
@@ -57,7 +58,7 @@ const LoginScreen = () => {
 
     } catch (error: any) {
       console.log('OTP Error:', error?.response.data);
-      ErrorHandler.alert(error?.response.data.message);
+      ErrorHandler.alert(error?.response.data.message || "Something went wrong");
 
     } finally {
       setLoading(false);
@@ -275,11 +276,15 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontWeight: '600',
     marginBottom: 20,
+    fontFamily:FontFamily.primaryFontFamily
   },
   label: {
     color: '#fff',
     fontSize: 16,
-    marginBottom: 10,
+    fontFamily:FontFamily.secondaryFontFamily
+
+
+    // marginBottom: 10,
   },
   inputContainer: {
     flexDirection: 'row',
@@ -288,7 +293,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     paddingHorizontal: 10,
     height: 50,
-    marginTop: 20,
+    marginTop: 10,
   },
   flag: {
     width: 20,
@@ -299,6 +304,8 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 16,
     marginRight: 10,
+    fontFamily:FontFamily.secondaryFontFamily
+
   },
   divider: {
     width: 1,
@@ -310,6 +317,8 @@ const styles = StyleSheet.create({
     flex: 1,
     color: '#fff',
     fontSize: 16,
+    fontFamily:FontFamily.secondaryFontFamily
+
   },
   checkboxContainer: {
     flexDirection: 'row',
@@ -321,6 +330,8 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     flex: 1,
     fontSize: 12,
+    fontFamily:FontFamily.secondaryFontFamily
+
   },
   link: {
     color: '#FF8C1A',
@@ -339,6 +350,8 @@ const styles = StyleSheet.create({
     color: '#0D1227',
     fontSize: 16,
     fontWeight: '700',
+    fontFamily:FontFamily.secondaryFontFamily
+
   },
   orContainer: {
     flexDirection: 'row',
@@ -355,6 +368,8 @@ const styles = StyleSheet.create({
     color: '#ccc',
     fontSize: 14,
     fontWeight: '400',
+    fontFamily:FontFamily.secondaryFontFamily
+
   },
   socialContainer: {
     flexDirection: 'row',
@@ -381,6 +396,8 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: width * 0.045,
     fontWeight: '500',
+    fontFamily:FontFamily.secondaryFontFamily
+
   },
   checkboxCustom: {
     width: 22,

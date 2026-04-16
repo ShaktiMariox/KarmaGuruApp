@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
+import React, { useEffect, useRef } from 'react';
+import { View, Text, Image, StyleSheet, Animated } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -14,10 +14,25 @@ type RootStackParamList = {
 type Props = NativeStackScreenProps<RootStackParamList, 'Splash'>;
 
 const SplashScreen: React.FC<Props> = ({ navigation }) => {
+  const fadeAnim = useRef(new Animated.Value(0)).current;
 
  
 useEffect(() => {
-  checkOnboarding();
+  const init = async () => {
+    await new Promise(resolve => {
+      Animated.timing(fadeAnim, {
+        toValue: 1,
+        duration: 1000,
+        useNativeDriver: true,
+      }).start(resolve);
+    });
+
+    await new Promise(resolve => setTimeout(resolve, 500));
+
+    checkOnboarding();
+  };
+
+  init();
 }, []);
 
 
@@ -54,10 +69,13 @@ const checkOnboarding = async () => {
 
   return (
     <View style={styles.container}>
-      <Image
-        source={require('../assets/images/splash_logo.png')}
-        style={styles.image}
-      />
+     <Animated.Image
+      source={require('../assets/images/splash_logo.png')}
+      style={[
+        styles.image,
+        { opacity: fadeAnim } // 👈 animation applied
+      ]}
+    />
     </View>
   );
 };

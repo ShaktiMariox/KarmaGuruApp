@@ -1,0 +1,13 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "src/assets/fonts/CerebriSans-Book.ttf",
+      "sha1": "dd5c17be0ea56cc5c69088f0b3968295e0aeea0e"
+    },
+    {
+      "path": "src/assets/fonts/Recoleta-Regular.otf",
+      "sha1": "a502e8fd4588955109c862f24d9198ab23f60552"
+    }
+  ]
+}

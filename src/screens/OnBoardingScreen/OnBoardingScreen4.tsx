@@ -14,6 +14,7 @@ import FastImage from 'react-native-fast-image';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import { CommonActions } from '@react-navigation/native';
+import { FontFamily } from '../../utils/fontFamily';
 
 
 const { width, height } = Dimensions.get('window');
@@ -95,6 +96,8 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontWeight: '600',
     textAlign: 'center',
+    fontFamily:FontFamily.primaryFontFamily
+
   },
   desc: {
     marginTop: 10,
@@ -102,6 +105,8 @@ const styles = StyleSheet.create({
     color: '#ccc',
     textAlign: 'center',
     paddingHorizontal: width * 0.1, // 10% padding
+    fontFamily:FontFamily.secondaryFontFamily
+
   },
   button: {
   paddingVertical: height * 0.015,
@@ -115,6 +120,8 @@ const styles = StyleSheet.create({
     color: '#FF8C1A',
     fontSize: 16,
     fontWeight: '500',
+        fontFamily:FontFamily.secondaryFontFamily
+    
     // textAlign: 'center',
   },
 });

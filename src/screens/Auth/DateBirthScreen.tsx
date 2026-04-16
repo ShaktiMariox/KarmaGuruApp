@@ -6,6 +6,8 @@ import { onBoarding } from '../../api/service';
 import { ErrorHandler } from '../../utils/ErrorHanldler';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
+import { FontFamily } from '../../utils/fontFamily';
+import { Color } from '../../utils/color';
 
 
 const DateBirthScreen = ({ navigation }: any) => {
@@ -125,6 +127,7 @@ const DateBirthScreen = ({ navigation }: any) => {
                         display="spinner"
                         maximumDate={new Date()}
                         onChange={onChange}
+                        accentColor="#0066F5"
                     />
                 )}
 
@@ -188,6 +191,8 @@ const styles = StyleSheet.create({
     fontSize: moderateScale(24),
     fontWeight: '600',
     textAlign: 'center',
+   fontFamily: FontFamily.primaryFontFamily
+    
   },
 
   progressContainer: {
@@ -217,6 +222,8 @@ const styles = StyleSheet.create({
     color: 'white',
     fontWeight: '600',
     fontSize: moderateScale(12),
+   fontFamily: FontFamily.secondaryFontFamily
+
   },
 
   imageContainer: {
@@ -235,6 +242,8 @@ const styles = StyleSheet.create({
     fontSize: moderateScale(14),
     textAlign: 'center',
     paddingHorizontal: scale(20),
+   fontFamily: FontFamily.secondaryFontFamily
+
   },
 
   bottomContainer: {
@@ -259,6 +268,8 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: moderateScale(15),
     textAlign: 'center',
+   fontFamily: FontFamily.secondaryFontFamily
+
   },
 
   nextButton: {
@@ -275,5 +286,7 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     fontSize: moderateScale(15),
     color: '#0D1227',
+   fontFamily: FontFamily.primaryFontFamily
+
   },
 });

@@ -6,6 +6,7 @@ import { onBoarding } from '../../api/service';
 import { ErrorHandler } from '../../utils/ErrorHanldler';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
+import { FontFamily } from '../../utils/fontFamily';
 
 
 const BirthPlaceScreen = ({ navigation }: any) => {
@@ -17,11 +18,22 @@ const BirthPlaceScreen = ({ navigation }: any) => {
     
 
    const handleNext = async () => {
-  if (!place) {
+      const trimmedPlace = place.trim();
+
+  if (!trimmedPlace) {
     ErrorHandler.alert('Please enter birth place');
     return;
   }
 
+  if (!/^[a-zA-Z\s,.-]+$/.test(trimmedPlace)) {
+    ErrorHandler.alert('Please enter a valid place name');
+    return;
+  }
+
+  if (trimmedPlace.length < 2) {
+    ErrorHandler.alert('Place name is too short');
+    return;
+  }
  
 
   try {
@@ -45,8 +57,10 @@ const BirthPlaceScreen = ({ navigation }: any) => {
     ErrorHandler.success(response?.message);
 
     navigation.navigate('Gender');
-  } catch (error) {
+  } catch (error:any) {
     console.log('API Error:', error);
+    ErrorHandler.alert(error?.response.data.message || "Something went wrong");
+    
   } finally {
             setLoading(false);
         }
@@ -172,6 +186,8 @@ const styles = StyleSheet.create({
     fontSize: moderateScale(24),
     fontWeight: '600',
     textAlign: 'center',
+    fontFamily: FontFamily.primaryFontFamily
+
   },
 
   progressContainer: {
@@ -202,6 +218,8 @@ const styles = StyleSheet.create({
     color: 'white',
     fontWeight: '600',
     fontSize: moderateScale(14),
+    fontFamily: FontFamily.secondaryFontFamily
+    
   },
 
   imageContainer: {
@@ -221,6 +239,8 @@ const styles = StyleSheet.create({
     fontWeight: '400',
     textAlign: 'center',
     paddingHorizontal: scale(20),
+    fontFamily: FontFamily.secondaryFontFamily
+
   },
 
   bottomContainer: {
@@ -232,6 +252,8 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: moderateScale(14),
     marginBottom: verticalScale(8),
+    fontFamily: FontFamily.secondaryFontFamily
+
   },
 
   inputWrapper: {
@@ -250,6 +272,8 @@ const styles = StyleSheet.create({
     color: '#989DB5',
     fontSize: moderateScale(14),
     fontWeight: '400',
+    fontFamily: FontFamily.secondaryFontFamily
+
   },
 
   nextButton: {
@@ -266,5 +290,7 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     fontSize: moderateScale(16),
     color: '#0D1227',
+    fontFamily: FontFamily.secondaryFontFamily
+
   },
 });

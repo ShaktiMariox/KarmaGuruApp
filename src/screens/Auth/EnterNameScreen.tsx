@@ -5,6 +5,7 @@ import { onBoarding } from '../../api/service';
 import { ErrorHandler } from '../../utils/ErrorHanldler';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
+import { FontFamily } from '../../utils/fontFamily';
 
 
 const EnterNameScreen = ({ navigation }: any) => {
@@ -16,8 +17,18 @@ const EnterNameScreen = ({ navigation }: any) => {
 
 
     const handleNext = async () => {
-        if (!name.trim()) {
+        const trimmedName = name.trim();
+        if (!trimmedName) {
             ErrorHandler.alert('Please enter your name');
+            return;
+        }
+
+        if (!/^[a-zA-Z\s]+$/.test(trimmedName)) {
+            ErrorHandler.alert('Name should contain only letters');
+            return;
+        }
+        if (trimmedName.length < 2) {
+            ErrorHandler.alert('Name is too short');
             return;
         }
 
@@ -63,7 +74,7 @@ const EnterNameScreen = ({ navigation }: any) => {
                 >
                     {/* Top Bar */}
                     <View style={styles.topBar}>
-                       
+
 
                         <Text style={styles.title}>Your Name</Text>
 
@@ -141,118 +152,130 @@ const EnterNameScreen = ({ navigation }: any) => {
 export default EnterNameScreen
 
 const styles = StyleSheet.create({
-  background: {
-    flex: 1,
-  },
+    background: {
+        flex: 1,
+    },
 
-  topBar: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingTop: verticalScale(50),
-    paddingHorizontal: scale(20),
-  },
+    topBar: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingTop: verticalScale(50),
+        paddingHorizontal: scale(20),
+    },
 
-  arrowContainer: {
-    width: scale(28),
-  },
+    arrowContainer: {
+        width: scale(28),
+    },
 
-  title: {
-    color: 'white',
-    fontSize: moderateScale(24),
-    fontWeight: '600',
-    textAlign: 'center',
-  },
+    title: {
+        color: 'white',
+        fontSize: moderateScale(24),
+        fontWeight: '600',
+        textAlign: 'center',
+        fontFamily: FontFamily.primaryFontFamily
 
-  progressContainer: {
-    flexDirection: 'row',
-    marginTop: verticalScale(30),
-    paddingHorizontal: scale(20),
-    alignItems: 'center',
-  },
+    },
 
-  progressSegment: {
-    flex: 1,
-    height: verticalScale(6),
-    borderRadius: moderateScale(3),
-    marginHorizontal: scale(4),
-  },
+    progressContainer: {
+        flexDirection: 'row',
+        marginTop: verticalScale(30),
+        paddingHorizontal: scale(20),
+        alignItems: 'center',
+    },
 
-  progressFilled: {
-    backgroundColor: '#FFCA96',
-  },
+    progressSegment: {
+        flex: 1,
+        height: verticalScale(6),
+        borderRadius: moderateScale(3),
+        marginHorizontal: scale(4),
+    },
 
-  progressEmpty: {
-    backgroundColor: 'rgba(255,255,255,0.3)',
-  },
+    progressFilled: {
+        backgroundColor: '#FFCA96',
+    },
 
-  progressPercent: {
-    marginLeft: scale(10),
-    color: 'white',
-    fontWeight: '600',
-    fontSize: moderateScale(12),
-  },
+    progressEmpty: {
+        backgroundColor: 'rgba(255,255,255,0.3)',
+    },
 
-  imageContainer: {
-    marginTop: verticalScale(25),
-    alignItems: 'center',
-  },
+    progressPercent: {
+        marginLeft: scale(10),
+        color: 'white',
+        fontWeight: '600',
+        fontSize: moderateScale(12),
+        fontFamily: FontFamily.secondaryFontFamily
 
-  imageStyle: {
-    width: scale(280),   // 👈 responsive instead of 400
-    height: verticalScale(160),
-  },
+    },
 
-  imageText: {
-    marginTop: verticalScale(40),
-    color: 'white',
-    fontSize: moderateScale(14),
-    fontWeight: '400',
-    textAlign: 'center',
-    paddingHorizontal: scale(20),
-  },
+    imageContainer: {
+        marginTop: verticalScale(25),
+        alignItems: 'center',
+    },
 
-  bottomContainer: {
-    marginTop: verticalScale(80),
-    paddingHorizontal: scale(20),
-  },
+    imageStyle: {
+        width: scale(280),   // 👈 responsive instead of 400
+        height: verticalScale(160),
+    },
 
-  inputLabel: {
-    color: 'white',
-    fontSize: moderateScale(14),
-    marginBottom: verticalScale(6),
-  },
+    imageText: {
+        marginTop: verticalScale(40),
+        color: 'white',
+        fontSize: moderateScale(14),
+        fontWeight: '400',
+        textAlign: 'center',
+        paddingHorizontal: scale(20),
+        fontFamily: FontFamily.secondaryFontFamily
 
-  inputWrapper: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    borderRadius: moderateScale(14),
-    paddingHorizontal: scale(12),
-    height: verticalScale(50),
-    borderWidth: 1,
-    borderColor: "#4B557E",
-  },
+    },
 
-  textInput: {
-    flex: 1,
-    marginLeft: scale(10),
-    color: '#989DB5',
-    fontSize: moderateScale(14),
-  },
+    bottomContainer: {
+        marginTop: verticalScale(80),
+        paddingHorizontal: scale(20),
+    },
 
-  nextButton: {
-    marginTop: verticalScale(25),
-    backgroundColor: '#FF8C1A',
-    height: verticalScale(50),
-    borderRadius: moderateScale(12),
-    justifyContent: 'center',
-    alignItems: 'center',
-    flexDirection: 'row',
-  },
+    inputLabel: {
+        color: 'white',
+        fontSize: moderateScale(14),
+        marginBottom: verticalScale(6),
+        fontFamily: FontFamily.secondaryFontFamily
 
-  nextButtonText: {
-    fontWeight: '700',
-    fontSize: moderateScale(15),
-    color: '#0D1227',
-  },
+    },
+
+    inputWrapper: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        borderRadius: moderateScale(14),
+        paddingHorizontal: scale(12),
+        height: verticalScale(50),
+        borderWidth: 1,
+        borderColor: "#4B557E",
+    },
+
+    textInput: {
+        flex: 1,
+        marginLeft: scale(10),
+        color: '#989DB5',
+        fontSize: moderateScale(14),
+        fontFamily: FontFamily.secondaryFontFamily
+
+    },
+
+    nextButton: {
+        marginTop: verticalScale(25),
+        backgroundColor: '#FF8C1A',
+        height: verticalScale(50),
+        borderRadius: moderateScale(12),
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'row',
+    },
+
+    nextButtonText: {
+        fontWeight: '700',
+        fontSize: moderateScale(15),
+        color: '#0D1227',
+        fontFamily: FontFamily.secondaryFontFamily
+
+    },
 });
