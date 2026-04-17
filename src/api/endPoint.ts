@@ -7,6 +7,8 @@ export const ENDPOINTS = {
   basicKudliDetail: '/api/user-auth/astrology/kundli/basic-details',
   kundliplanetarypositions:'/api/user-auth/astrology/kundli/planetary-positions',
   astrologyChart: '/api/user-auth/astrology/kundli/charts',
+  astrologyDasha: '/api/user-auth/astrology/kundli',
+
   logout: '/api/user-auth/logout',
   
 };

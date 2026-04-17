@@ -26,7 +26,6 @@ export const socialLogin = async (data) => {
 export const kundliBasicDetail = async () => {
   const res = await apiClient.get(ENDPOINTS.basicKudliDetail);
 
-  console.log("resssssss:",res)
   return res.data;  
 };
 
@@ -36,6 +35,10 @@ export const kundliPlanetryPosition = async () => {
 };
 export const astrologyChart = async (type: string) => {
   const res = await apiClient.get(`${ENDPOINTS.astrologyChart}/${type}`);
+  return res.data;
+};
+export const astrologyDasha = async (type: string) => {
+  const res = await apiClient.get(`${ENDPOINTS.astrologyDasha}/${type}`);
   return res.data;
 };
 
